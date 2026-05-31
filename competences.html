@@ -1,0 +1,3563 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Compétences</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+
+  <style>
+    /* Réinitialisation des marges */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f8f9fa; /* Fond légèrement grisé pour un meilleur contraste */
+    }
+
+    /* Palette de couleurs harmonisées */
+    :root {
+      --primary-dark: #2c3e50;
+      --primary: #16a085;
+      --primary-light: #1abc9c;
+      --secondary: #3498db;
+      --accent: #e74c3c;
+      --light: #ecf0f1;
+      --dark: #34495e;
+      --success: #27ae60;
+      --warning: #f39c12;
+      --danger: #e74c3c;
+    }
+
+    /* En-tête compact */
+    header {
+      background: linear-gradient(to right, var(--primary-dark), var(--primary));
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      line-height: 1.2;
+      flex-grow: 1;
+    }
+
+    /* Conteneur des liens repositionné */
+    .header-links-container {
+      position: absolute;
+      right: 20px;
+      top: 0px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 20px;
+      background-color: rgba(22, 160, 133, 0.9);
+      padding: 5px 15px;
+      border-radius: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .header-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9em;
+      transition: all 0.3s ease;
+      padding: 2px 0;
+      font-weight: 500;
+    }
+
+    .header-links a:hover {
+      color: var(--light);
+      transform: translateY(-2px);
+    }
+
+    /* Barre latérale */
+    .sidebar {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 250px;
+      height: calc(100% - 100px);
+      background: linear-gradient(to bottom, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 15px;
+      box-sizing: border-box;
+      z-index: 100;
+      overflow-y: auto;
+      padding-top: 40px;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding-left: 10px;
+    }
+
+    .sidebar li {
+      margin-bottom: 15px;
+      transition: transform 0.2s;
+    }
+
+    .sidebar li:hover {
+      transform: translateX(5px);
+    }
+
+    .sidebar a {
+      color: var(--light);
+      text-decoration: none;
+      font-size: 1rem;
+      display: block;
+      padding: 5px 10px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    /* Contenu principal */
+    .main-content {
+      margin-left: 250px;
+      padding: 25px;
+      margin-top: 80px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    /* Style des titres SAE */
+    .sae-title {
+      scroll-margin-top: 80px;
+      padding-top: 20px;
+      margin-top: -20px;
+      position: relative;
+      z-index: 10;
+      color: var(--primary-dark);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 10px;
+    }
+
+    /* Galerie d'images */
+    .image-gallery {
+      margin: 30px 0;
+    }
+    
+    .thumbnail {
+      cursor: pointer;
+      transition: transform 0.2s;
+      border: 2px solid transparent;
+    }
+    
+    .thumbnail:hover {
+      transform: scale(1.05);
+      border-color: var(--primary);
+    }
+  
+    /* Titre agrandi */
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+      line-height: 1.2;
+      flex-grow: 1;
+      padding-top: 5px;
+    }
+    
+    .dot {
+      height: 12px;
+      width: 12px;
+      background-color: var(--danger);
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .dot-green {
+      height: 12px;
+      width: 12px;
+      background-color: var(--success);
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .dot-orange {
+      height: 12px;
+      width: 12px;
+      background-color: var(--warning);
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .dot-blue {
+      height: 12px;
+      width: 12px;
+      background-color: var(--secondary);
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .competence-reminder {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+      margin: 20px auto;
+      gap: 15px;
+    }
+
+    .text-red {
+      color: var(--danger);
+    }
+
+    .text-green {
+      color: var(--success);
+    }
+
+    .text-orange {
+      color: var(--warning);
+    }
+
+    .text-blue {
+      color: var(--secondary);
+    }
+
+    .active-tab {
+      font-weight: bold;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white !important;
+      border-left: 3px solid white;
+    }
+
+.tab-pane {
+  display: none;
+  min-height: 100vh; /* IMPORTANT : empêche mélange visuel */
+  padding-bottom: 100px;
+}
+
+.tab-pane.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+    /* Style pour la légende principale */
+    #mainCaption {
+      font-size: 0.95rem;
+      color: var(--dark);
+      padding: 5px 0;
+      display: block;
+      margin-top: 10px;
+    }
+    
+    /* Transition fluide pour l'image */
+    #mainImage {
+      transition: opacity 0.3s ease;
+    }
+    
+    /* Style des miniatures */
+    .thumbnail {
+      transition: transform 0.2s ease;
+      border: 2px solid #ddd;
+    }
+    
+    .thumbnail:hover {
+      transform: scale(1.05);
+      border-color: var(--primary);
+      cursor: pointer;
+    }
+    
+    /* Légendes des miniatures */
+    .small {
+      font-size: 0.8rem;
+      color: #666;
+
+      max-width: 100px;
+      word-wrap: break-word;
+    }
+
+    /* Style spécifique pour la section Analyser */
+    #analyser ul {
+      padding-left: 0;
+    }
+
+    #analyser li {
+      margin-bottom: 8px;
+    }
+
+    /* Style pour la méthodologie en 2 colonnes */
+    .methodology-row {
+      margin-bottom: 20px;
+    }
+
+    .methodology-col {
+      padding: 0 10px;
+    }
+
+    .methodology-step {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 15px;
+      height: 100%;
+      border-left: 4px solid var(--primary);
+      display: flex;
+      transition: transform 0.2s;
+    }
+
+    .methodology-step:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .step-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary);
+      margin-right: 15px;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      color: var(--primary-dark);
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .methodology-step ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .methodology-step li {
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+    }
+
+    .model-comparison {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .model-card {
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      flex: 1;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border-left: 3px solid var(--secondary);
+    }
+
+    .model-card h6 {
+      font-size: 0.95rem;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .model-card ul {
+      padding-left: 20px;
+      font-size: 0.9rem;
+    }
+
+    .model-card li {
+      margin-bottom: 3px;
+    }
+
+    /* Styles pour les cartes */
+    .card {
+      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .card-title {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .alert-info {
+      background-color: #e8f4f2;
+      border-color: #b8e0d8;
+      color: var(--primary-dark);
+    }
+
+    .alert-success {
+      background-color: #e8f5e9;
+      border-color: #c8e6c9;
+      color: var(--success);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .methodology-col {
+          margin-bottom: 15px;
+      }
+      
+      .model-comparison {
+          flex-direction: column;
+          gap: 10px;
+      }
+      
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        margin-top: 80px;
+      }
+      
+      .main-content {
+        margin-left: 0;
+      }
+    }
+
+    /* NOUVEAUX STYLES POUR LES GALERIES PHOTOS */
+    .gallery-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .main-image-wrapper {
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .main-image-wrapper img {
+      max-height: 400px;
+      width: auto;
+      max-width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .main-caption {
+      font-size: 0.95rem;
+      color: var(--dark);
+      margin-top: 10px;
+      text-align: center;
+      max-width: 800px;
+    }
+
+    .thumbnails-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .thumbnail-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 120px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .thumbnail-item:hover {
+      transform: scale(1.05);
+    }
+
+    .thumbnail-img {
+      width: 100%;
+      height: 80px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .thumbnail-caption {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 5px;
+      text-align: center;
+      width: 100%;
+      word-wrap: break-word;
+    }
+
+    /* Styles spécifiques pour la partie Traiter */
+    #traiter .gallery-container {
+      margin: 20px 0;
+    }
+
+    #traiter .main-image-wrapper img {
+      max-height: 450px;
+    }
+
+    #traiter .thumbnails-container {
+      margin-top: 15px;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .list-group-item {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-left: none;
+      border-right: none;
+    }
+
+    .list-group-item:first-child {
+      border-top: none;
+    }
+
+    .badge {
+      font-weight: 500;
+      padding: 5px 8px;
+    }
+
+    .bg-primary {
+      background-color: var(--primary) !important;
+    }
+
+    .bg-secondary {
+      background-color: var(--secondary) !important;
+    }
+
+    .text-primary {
+      color: var(--primary) !important;
+    }
+
+    .text-secondary {
+      color: var(--secondary) !important;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+    }
+
+    /* Animation pour les onglets */
+    .tab-pane {
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+	
+
+  </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>PORTFOLIO</h1>
+        <div class="header-bar">
+            <div class="header-links-container">
+                <div class="header-links">
+                    <a href="index.html">Accueil</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+	
+	
+
+<!-- Barre latérale -->
+<div id="sidebar" class="sidebar">
+    <ul style="list-style-type: none; padding-left: 13px;">
+
+        <!-- =========================
+             TRAITER
+        ========================== -->
+        <li>
+            <a href="#"
+               onclick="toggleSubmenu(event, 'traiter-submenu')"
+               style="color: white; display: flex; justify-content: space-between; align-items: center; font-weight: 600;">
+                Traiter
+                <i class="fas fa-chevron-down" id="traiter-chevron"></i>
+            </a>
+
+            <ul id="traiter-submenu" style="display: none; padding-left: 15px; margin-top: 8px;">
+
+                <!-- Projet Alternance -->
+                <li>
+ <a href="#ght-mouvements"
+   onclick="showCompetence('traiter')"
+   style="
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start;
+       background: linear-gradient(90deg, #16a085, #1abc9c);
+       color: white;
+       padding: 10px 15px;
+       border-radius: 8px;
+       font-weight: bold;
+       margin-bottom: 8px;
+       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+       text-decoration: none;">
+    
+    <span>Projet en alternance</span>
+
+    <span style="
+        background: rgba(255,255,255,0.25);
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75em;
+        margin-top: 5px;">
+        CH Saint-Brieuc
+    </span>
+</a>
+                </li>
+
+                <li><a href="#sae201" onclick="showCompetence('traiter')">Conception d'une base de données - SAÉ 201</a></li>
+                <li><a href="#sae202" onclick="showCompetence('traiter')">Création de reporting - SAÉ 202</a></li>
+            </ul>
+        </li>
+
+        <!-- =========================
+             ANALYSER
+        ========================== -->
+        <li>
+            <a href="#"
+               onclick="toggleSubmenu(event, 'analyser-submenu')"
+               style="color: white; display: flex; justify-content: space-between; align-items: center; font-weight: 600;">
+                Analyser
+                <i class="fas fa-chevron-down" id="analyser-chevron"></i>
+            </a>
+
+            <ul id="analyser-submenu" style="display: none; padding-left: 15px; margin-top: 7px;">
+
+ 
+
+                <li><a href="#sae206" onclick="showCompetence('analyser')">Création d'un outil décisionnel - SAÉ 206</a></li>
+							<li>
+    <a href="#sae-datathon" onclick="showCompetence('analyser')">
+        Optimisation vente de bière - Datathon
+    </a>
+</li>
+		
+				
+				
+				                <li><a href="#sae-supermarche" onclick="showCompetence('analyser')">Création d'un outil d'analyse marketing - SAÉ 402</a></li>
+
+				
+				               <!-- Projet Alternance -->
+                <li>
+                    <a href="#sae-transfusion"
+                       onclick="showCompetence('analyser')"
+                       style="
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start;
+       background: linear-gradient(90deg, #16a085, #1abc9c);
+       color: white;
+       padding: 10px 15px;
+       border-radius: 8px;
+       font-weight: bold;
+       margin-bottom: 8px;
+       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+       text-decoration: none;">
+                        <span>
+                            Projet en alternance
+                        </span>
+                        <span style="
+        background: rgba(255,255,255,0.25);
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75em;
+        margin-top: 5px;">
+                            CH Saint-Brieuc
+                        </span>
+                    </a>
+                </li>
+				
+				            </ul>
+			
+                </li>
+
+
+        <!-- =========================
+             VALORISER
+        ========================== -->
+        <li>
+            <a href="#"
+               onclick="toggleSubmenu(event, 'valoriser-submenu')"
+               style="color: white; display: flex; justify-content: space-between; align-items: center; font-weight: 600;">
+                Valoriser
+                <i class="fas fa-chevron-down" id="valoriser-chevron"></i>
+            </a>
+
+            <ul id="valoriser-submenu" style="display: none; padding-left: 15px; margin-top: 8px;">
+
+
+
+                <li><a href="#sae-accident" onclick="showCompetence('valoriser')">TdB accidentologie routière - SAÉ 301</a></li>
+				
+				                <!-- Projet Alternance -->
+                <li>
+                    <a href="#saebloc"
+                       onclick="showCompetence('valoriser')"
+                      style="
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start;
+       background: linear-gradient(90deg, #16a085, #1abc9c);
+       color: white;
+       padding: 10px 15px;
+       border-radius: 8px;
+       font-weight: bold;
+       margin-bottom: 8px;
+       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+       text-decoration: none;">
+                        <span>
+                            Projet en alternance
+                        </span>
+                        <span style="
+        background: rgba(255,255,255,0.25);
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75em;
+        margin-top: 5px;">
+                            CH Saint-Brieuc
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- =========================
+             MODÉLISER
+        ========================== -->
+        <li>
+            <a href="#"
+               onclick="toggleSubmenu(event, 'modeliser-submenu')"
+               style="color: white; display: flex; justify-content: space-between; align-items: center; font-weight: 600;">
+                Modéliser
+                <i class="fas fa-chevron-down" id="modeliser-chevron"></i>
+            </a>
+
+            <ul id="modeliser-submenu" style="display: none; padding-left: 15px; margin-top: 8px;">
+                <li><a href="#sae401" onclick="showCompetence('modeliser')">Prédiction de la durée du sommeil - SAÉ 401</a></li>
+                <!-- Projet Alternance -->
+                <li>
+                    <a href="#saePOP"
+                       onclick="showCompetence('modeliser')"
+                      style="
+       display: flex;
+       flex-direction: column;
+       align-items: flex-start;
+       background: linear-gradient(90deg, #16a085, #1abc9c);
+       color: white;
+       padding: 10px 15px;
+       border-radius: 8px;
+       font-weight: bold;
+       margin-bottom: 8px;
+       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+       text-decoration: none;">
+                        <span>
+                            Projet en alternance
+                        </span>
+                        <span style="
+        background: rgba(255,255,255,0.25);
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75em;
+        margin-top: 5px;">
+                            CH Saint-Brieuc
+                        </span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+
+<div class="main-content" id="main-scroll">
+
+<div class="tab-pane" id="traiter">
+
+
+	    <div class="sae-container">
+        <h2 id="ght-mouvements" class="sae-title">Alternance - Analyse des mouvements de patients au sein du GHT</h2>
+        
+        <!-- Objectif principal -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-bullseye me-2"></i>Mission</h3>
+                <p class="lead">
+                    Optimiser le <span class="fw-bold text-primary">codage PMSI</span> des transferts inter-établissements pour maximiser les recettes T2A.
+                </p>
+                <div class="alert alert-secondary mt-3"><strong>Enjeu :</strong> Les transferts mal codés (modes entrée/sortie erronés) génèrent des pertes financières significatives.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Colonne Méthodologie -->
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><i class="fas fa-tasks me-2"></i>Travail réalisé</h3>
+                        <div class="alert alert-success">
+                            Tableau de bord réalisé sous <strong> Buniness Object (BO) </strong> via l'univers WEBPIMS
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <span class="badge bg-primary me-2"><i class="fas fa-link"></i></span>
+                                Jointure par <strong>IPP</strong> (Identifiant Patient Permanent)
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge bg-primary me-2"><i class="fas fa-filter"></i></span>
+                                Filtrage avec le préfixe du numéro d'hospitalisation <strong>SB%</strong> (Saint-Brieuc)
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge bg-primary me-2"><i class="fas fa-code"></i></span>
+                                Formules de détection des transferf via variable créer :
+                                <pre class="mt-2 bg-light p-2">=SI([Date sortie] = [Date entrée]; "Identique"; "Différente")</pre>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge bg-primary me-2"><i class="fas fa-sitemap"></i></span>
+                                Architecture modulaire (1 requête/établissement)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Colonne Résultats -->
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><i class="fas fa-file-alt me-2"></i>Livrables</h3>
+                        <div class="alert alert-warning">
+                            <i class="fas fa-clipboard-list me-2"></i> <strong>8 rapports automatisés</strong>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <span class="badge bg-secondary me-2">4</span>
+                                Onglets "Modes d'entrée" (par établissement source)
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge bg-secondary me-2">4</span>
+                                Onglets "Modes de sortie" (par établissement cible)
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge bg-secondary me-2">1</span>
+                                Module dédié aux <strong>PIE</strong> (Prestations Inter-Établissements)
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge bg-success me-2"><i class="fas fa-sync-alt"></i></span>
+                                Actualisation hebdomadaire
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Galerie des captures -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-images me-2"></i>Extraits des rapports</h3>
+        <div class="gallery-container">
+            <div class="main-image-wrapper">
+                <img id="mainImageGHT" src="Photo/Onglet.png" 
+                     class="img-fluid" 
+                     alt="Dashboard d'analyse des transferts">
+                <div id="mainCaptionGHT" class="main-caption">Onglet principal - Transferts Paimpol → Saint-Brieuc</div>
+            </div>
+
+            <div class="thumbnails-container">
+                <div class="thumbnail-item" onclick="changeMediaGHT('Photo/Onglet.png', 'Onglet mode entrée')">
+                    <img src="Photo/Onglet.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Onglet transfert Paimpol → Saint-Brieuc</div>
+                </div>
+                
+                <div class="thumbnail-item" onclick="changeMediaGHT('Photo/Outil de requpete.png', 'Outil de requête')">
+                    <img src="Photo/Outil de requpete.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Outil requête</div>
+                </div>
+                
+                <div class="thumbnail-item" onclick="changeMediaGHT('Photo/PIE.png', 'Détection PIE')">
+                    <img src="Photo/PIE.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Module PIE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Fonction corrigée pour la galerie GHT
+function changeMediaGHT(imgSrc, caption) {
+    // Récupère les éléments
+    const mainImg = document.getElementById('mainImageGHT');
+    const mainCaption = document.getElementById('mainCaptionGHT');
+    
+    console.log("Changement vers:", imgSrc); // Debug
+    
+    // Animation de transition
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.src = imgSrc;
+        mainCaption.textContent = caption;
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    // Met en évidence la miniature sélectionnée
+    document.querySelectorAll('.thumbnails-container .thumbnail-img').forEach(thumb => {
+        // Normalise les chemins pour comparaison
+        const thumbPath = thumb.src.split('/').pop().replace(/%20/g, ' ').replace(/_/g, ' ');
+        const newPath = imgSrc.split('/').pop().replace(/%20/g, ' ').replace(/_/g, ' ');
+        
+        console.log("Comparaison:", thumbPath, "vs", newPath); // Debug
+        
+        thumb.style.border = '2px solid #ddd';
+        thumb.style.transform = 'scale(1)';
+        
+        if (thumbPath.toLowerCase() === newPath.toLowerCase()) {
+            thumb.style.border = '2px solid var(--primary)';
+            thumb.style.transform = 'scale(1.05)';
+        }
+    });
+}
+</script>
+
+        <!-- Bilan -->
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-medal me-2"></i>Bilan</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h5><i class="fas fa-cogs text-primary me-2"></i>Apports techniques</h5>
+                                <ul>
+                                    <li>Maîtrise avancée de <strong>WEBPIMS</strong></li>
+                                    <li>Automatisation des contrôles PMSI</li>
+                                    <li>Modélisation des flux patients GHT</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h5><i class="fas fa-euro-sign text-success me-2"></i>Impact financier</h5>
+                                <ul>
+                                    <li>Identification de <strong>100%</strong> des transferts mal codés</li>
+                                    <li>Permet d'ajouter des transports</li>
+                                    <li>Outil réutilisable par tous les établissements</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compétences -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="competence-reminder justify-content-end d-flex">
+                    <div class="d-flex align-items-center me-3">
+                        <span class="dot"></span>
+                        <span class="fw-bold text-red ms-2">Traiter</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="dot-orange"></span>
+                        <span class="fw-bold text-orange ms-2">Valoriser</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SAE 201 -->
+        <h2 id="sae201" class="sae-title">SAÉ 201 - Conception, implémentation et alimentation d'une base de données</h2>
+        
+        <!-- Carte Problématique -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-question-circle me-2"></i>Problématique</h3>
+                <p class="lead">Informatiser la gestion d'une entreprise de distribution.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Colonne Travail réalisé -->
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><i class="fas fa-tasks me-2"></i>Travail réalisé</h3>
+                        <div class="alert alert-info">
+                            <strong>Création complète</strong> d'une base de données relationnelle
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-table me-2 text-muted"></i>Modélisation des tables
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-project-diagram me-2 text-muted"></i>Définition des relations
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-code me-2 text-muted"></i>Implémentation avec IBeasy+ et Looping
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Colonne Livrables -->
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><i class="fas fa-file-alt me-2"></i>Livrables</h3>
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>Documents complets produits
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-file-pdf me-2 text-muted"></i>Rapport
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-database me-2 text-muted"></i>Base de données Access
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-file-excel me-2 text-muted"></i>Dictionnaire de données Excel
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-sitemap me-2 text-muted"></i>Graphe des dépendances
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nouvelle galerie photo améliorée -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-images me-2"></i>Schémas de conception</h3>
+                <div class="gallery-container">
+                    <div class="main-image-wrapper">
+                        <img id="mainImageDB" src="Photo/sae201_1.png" 
+                             class="img-fluid" 
+                             alt="Schéma de base de données">
+                        <div id="mainCaptionDB" class="main-caption">Extrait de la base de données Access</div>
+                    </div>
+
+                    <div class="thumbnails-container">
+                        <div class="thumbnail-item" onclick="changeMediaDB('Photo/sae201_1.png', 'Extrait de la base de données Access')">
+                            <img src="Photo/sae201_1.png" class="thumbnail-img">
+                            <div class="thumbnail-caption">Base de données Access</div>
+                        </div>
+                        
+                        <div class="thumbnail-item" onclick="changeMediaDB('Photo/sae201_2.png', 'Gestion des type de données dans Access')">
+                            <img src="Photo/sae201_2.png" class="thumbnail-img">
+                            <div class="thumbnail-caption">Gestion des type de données dans Access</div>
+                        </div>
+                        
+                        <div class="thumbnail-item" onclick="changeMediaDB('Photo/sae201_4.png', 'Dictionnaire des données')">
+                            <img src="Photo/sae201_4.png" class="thumbnail-img">
+                            <div class="thumbnail-caption">Dictionnaire de données</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			
+        </div>
+		        <!-- Compétence -->
+        <div class="text-center mt-4">
+            <div class="competence-reminder">
+                <div class="d-flex align-items-center justify-content-center">
+                    <span class="dot"></span>
+                    <span class="fw-bold text-red ms-2">Traiter</span>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SAE 202 -->
+        <h2 id="sae202" class="sae-title mt-5">SAÉ 202 - Création de reporting depuis une base de données relationnelle</h2>
+        
+        <!-- Carte Problématique -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-question-circle me-2"></i>Problématique</h3>
+                <p class="lead">Créer des reportings à partir de données stockées dans un SGBD relationnel (données IMDB 2020).</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Colonne Travail réalisé -->
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><i class="fas fa-tasks me-2"></i>Travail réalisé</h3>
+                        <div class="alert alert-info">
+                            <strong>Reporting complet</strong> avec connexion Excel-Access
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-search me-2 text-muted"></i>Requêtes complexes
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-chart-bar me-2 text-muted"></i>Création de graphiques
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-exchange-alt me-2 text-muted"></i>Connexions inter-logiciels
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Colonne Livrables -->
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><i class="fas fa-file-alt me-2"></i>Livrables</h3>
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>Documents analytiques produits
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-file-excel me-2 text-muted"></i>Description des tables (Excel)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-database me-2 text-muted"></i>Base Access avec requêtes
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-file-excel me-2 text-muted"></i>Reporting Excel avec graphiques
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-file-alt me-2 text-muted"></i>Rapport d'analyse
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- photo SAE 202 -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-chart-line me-2"></i>Visualisations des données</h3>
+                <div class="gallery-container">
+                    <div class="main-image-wrapper">
+                        <img id="mainImageReport" src="Photo/sae101_1.jpg" 
+                             class="img-fluid" 
+                             alt="Reporting IMDB">
+                        <div id="mainCaptionReport" class="main-caption">Extrait d'une requête</div>
+                    </div>
+
+                    <div class="thumbnails-container">
+                        <div class="thumbnail-item" onclick="changeMediaReport('Photo/sae101_1.jpg', '>Extrait d'une requête Access')">
+                            <img src="Photo/sae101_1.jpg" class="thumbnail-img">
+                            <div class="thumbnail-caption">Extrait d'une requête</div>
+                        </div>
+                        
+                        <div class="thumbnail-item" onclick="changeMediaReport('Photo/sae101_2.jpg', 'Relations entre les entités')">
+                            <img src="Photo/sae101_2.jpg" class="thumbnail-img">
+                            <div class="thumbnail-caption">Base de données</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compétence -->
+        <div class="text-center mt-4">
+            <div class="competence-reminder">
+                <div class="d-flex align-items-center justify-content-center">
+                    <span class="dot"></span>
+                    <span class="fw-bold text-red ms-2">Traiter</span>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+    </div>
+
+<script>
+// Fonction pour changer les médias SAE 201
+function changeMediaDB(imgSrc, caption) {
+    document.getElementById('mainImageDB').src = imgSrc;
+    document.getElementById('mainCaptionDB').textContent = caption;
+    
+    // Animation
+    const mainImg = document.getElementById('mainImageDB');
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    // Effet sur les miniatures
+    const thumbnails = document.querySelectorAll('.thumbnail-img');
+    thumbnails.forEach(thumb => {
+        thumb.style.transform = 'scale(1)';
+        if (thumb.src === imgSrc) {
+            thumb.style.transform = 'scale(0.95)';
+            thumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.2)';
+        } else {
+            thumb.style.boxShadow = 'none';
+        }
+    });
+}
+
+// Fonction pour changer les médias SAE 202
+function changeMediaReport(imgSrc, caption) {
+    document.getElementById('mainImageReport').src = imgSrc;
+    document.getElementById('mainCaptionReport').textContent = caption;
+    
+    // Animation
+    const mainImg = document.getElementById('mainImageReport');
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    // Effet sur les miniatures
+    const thumbnails = document.querySelectorAll('#sae202 .thumbnail-img');
+    thumbnails.forEach(thumb => {
+        thumb.style.transform = 'scale(1)';
+        if (thumb.src === imgSrc) {
+            thumb.style.transform = 'scale(0.95)';
+            thumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.2)';
+        } else {
+            thumb.style.boxShadow = 'none';
+        }
+    });
+}
+</script>
+
+
+
+<div class="tab-pane" id="analyser">
+<div class="sae-container">
+ 
+        <!-- SAE 206 - Outil décisionnel pour EPSM -->
+        <h2 id="sae206" class="sae-title">SAÉ 206 - Création d'un outil décisionnel pour un établissement de santé mentale</h2>
+        
+        <!-- Carte Problématique -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-question-circle me-2"></i>Problématique</h3>
+                <p class="lead">
+                    Conception d'un outil interactif pour visualiser et analyser l'activité d'un établissement public de santé mentale (EPSM) à partir de données complexes d'hospitalisation et d'actes ambulatoires.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Colonne Travail réalisé -->
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><i class="fas fa-tasks me-2"></i>Travail réalisé</h3>
+                        <div class="alert alert-info">
+                            <strong>Application Shiny complète</strong> avec traitement de données médicales
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-database me-2 text-muted"></i>Importation et nettoyage de fichiers texte complexes
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-code me-2 text-muted"></i>Développement d'une macro VBA pour le prétraitement
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-chart-bar me-2 text-muted"></i>Création de visualisations interactives (graphiques, tableaux)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-filter me-2 text-muted"></i>Implémentation d'un système de filtres avancés
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-shield-alt me-2 text-muted"></i>Respect des contraintes de confidentialité
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Colonne Livrables -->
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><i class="fas fa-file-alt me-2"></i>Livrables</h3>
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>Solution complète livrée
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-file-excel me-2 text-muted"></i>Script VBA d'importation des données
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fab fa-r-project me-2 text-muted"></i>Application Shiny (ui.R, server.R, global.R)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-file-pdf me-2 text-muted"></i>Documentation utilisateur
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-book me-2 text-muted"></i>Dictionnaire de données
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Galerie photo SAE206 - Version améliorée -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-images me-2"></i>L'application</h3>
+        <div class="gallery-container">
+            <div class="main-image-wrapper">
+                <img id="mainImageSAE206" src="Photo/visuel.png" 
+                     class="img-fluid border" 
+                     alt="Page d'accueil de l'application">
+                <div id="mainCaptionSAE206" class="main-caption">Page d'accueil avec indicateurs globaux</div>
+            </div>
+
+            <div class="thumbnails-container">
+                <div class="thumbnail-item" onclick="changeMediaSAE206('Photo/visuel.png', 'Page d\'accueil avec indicateurs globaux')">
+                    <img src="Photo/visuel.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Présentation de notre application</div>
+                </div>
+                
+                <div class="thumbnail-item" onclick="changeMediaSAE206('Photo/VBA.png', 'Permet de lire le vichier RPS/RAA')">
+                    <img src="Photo/VBA.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Code VBA</div>
+                </div>
+                
+                <div class="thumbnail-item" onclick="changeMediaSAE206('Photo/Graphique.png', 'Visualisations interactives')">
+                    <img src="Photo/Graphique.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Graphiques</div>
+                </div>
+                
+                <div class="thumbnail-item" onclick="changeMediaSAE206('Photo/Filtre.png', 'Possibilité de filtres nombreuses')">
+                    <img src="Photo/Filtre.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Filtres</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Fonction pour la galerie SAE206
+function changeMediaSAE206(imgSrc, caption) {
+    // Récupère les éléments
+    const mainImg = document.getElementById('mainImageSAE206');
+    const mainCaption = document.getElementById('mainCaptionSAE206');
+    
+    // Animation de transition
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.src = imgSrc;
+        mainCaption.textContent = caption;
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    // Met en évidence la miniature sélectionnée
+    document.querySelectorAll('#sae206 .thumbnail-img').forEach(thumb => {
+        // Normalisation des chemins pour comparaison
+        const thumbPath = thumb.src.split('/').pop();
+        const newPath = imgSrc.split('/').pop();
+        
+        thumb.style.transform = 'scale(1)';
+        thumb.style.border = '2px solid #ddd';
+        
+        if (thumbPath === newPath) {
+            thumb.style.transform = 'scale(1.05)';
+            thumb.style.border = '2px solid var(--primary)';
+        }
+    });
+}
+
+// Initialisation - sélectionne la première image au chargement
+document.addEventListener('DOMContentLoaded', function() {
+    const firstThumb = document.querySelector('#sae206 .thumbnail-item:first-child img');
+    if (firstThumb) {
+        firstThumb.style.transform = 'scale(1.05)';
+        firstThumb.style.border = '2px solid var(--primary)';
+    }
+});
+</script>
+        <!-- Méthodologie -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-cogs me-2"></i>Méthodologie</h3>
+                <div class="row methodology-row">
+                    <!-- Étape 1 -->
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Compréhension des données</h5>
+                                <ul>
+                                    <li>Analyse des fichiers sources (RAA et RPS)</li>
+                                    <li>Étude des documents complémentaires (CIM-10, guide méthodologique)</li>
+                                    <li>Création d'un dictionnaire de données</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 2 -->
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Prétraitement</h5>
+                                <ul>
+                                    <li>Développement d'une macro VBA pour l'importation</li>
+                                    <li>Nettoyage et transformation des données</li>
+                                    <li>Création de variables calculées</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row methodology-row">
+                    <!-- Étape 3 -->
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Conception de l'application</h5>
+                                <ul>
+                                    <li>Architecture en 3 pages (accueil, hospitalisations, ambulatoire)</li>
+                                    <li>Définition des indicateurs clés</li>
+                                    <li>Choix des visualisations adaptées</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 4 -->
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Développement</h5>
+                                <ul>
+                                    <li>Implémentation des filtres interactifs</li>
+                                    <li>Création des graphiques avec Plotly</li>
+                                    <li>Tests et validation des fonctionnalités</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Compétences -->
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <h3 class="card-title text-primary">
+      <i class="fas fa-tools me-2"></i>Compétences développées
+    </h3>
+
+    <!-- Liste des compétences -->
+    <div class="row mb-3">
+      <div class="col-md-6 mb-2"><span class="dot-green me-2"></span>Analyse de besoins utilisateurs</div>
+      <div class="col-md-6 mb-2"><span class="dot me-2"></span>Traitement de données complexes</div>
+      <div class="col-md-6 mb-2"><span class="dot-orange me-2"></span>Visualisation interactive</div>
+      <div class="col-md-6 mb-2"><span class="dot-green me-2"></span>Gestion de projet en équipe</div>
+      <div class="col-md-6 mb-2"><span class="dot-orange me-2"></span>Communication technique</div>
+    </div>
+
+    <!-- Légende -->
+    <div class="competence-reminder d-flex justify-content-end">
+      <div class="d-flex align-items-center me-3"><span class="dot"></span>Traiter</div>
+      <div class="d-flex align-items-center me-3"><span class="dot-green"></span>Analyser</div>
+      <div class="d-flex align-items-center"><span class="dot-orange"></span>Valoriser</div>
+    </div>
+
+  </div>
+</div>
+
+
+ 
+<script>
+// Fonction pour changer les médias SAE 206
+function changeMediaSAE206(imgSrc, caption) {
+    document.getElementById('mainImageSAE206').src = imgSrc;
+    document.getElementById('mainCaptionSAE206').textContent = caption;
+    
+    // Animation
+    const mainImg = document.getElementById('mainImageSAE206');
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    // Effet sur les miniatures
+    const thumbnails = document.querySelectorAll('#sae206 .thumbnail-img');
+    thumbnails.forEach(thumb => {
+        thumb.style.transform = 'scale(1)';
+        if (thumb.src === imgSrc) {
+            thumb.style.transform = 'scale(0.95)';
+            thumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.2)';
+        } else {
+            thumb.style.boxShadow = 'none';
+        }
+    });
+}
+</script>
+
+
+<!-- Datathon - Optimisation du bénéfice lié à la vente de bière -->
+<h2 id="sae-datathon" class="sae-title mt-5">Datathon - Optimisation du bénéfice lié à la vente de bière</h2>
+
+<!-- Carte Problématique -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-question-circle me-2"></i>Problématique</h3>
+        <p class="lead">
+            Optimiser le bénéfice généré par la vente de bières en proposant une stratégie de référencement personnalisée pour chaque bar, basée sur l'analyse de son environnement concurrentiel.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Colonne Travail réalisé -->
+    <div class="col-md-6">
+        <div class="card mb-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-tasks me-2"></i>Travail réalisé</h3>
+                <div class="alert alert-info">
+                    <strong>Analyse de données géolocalisées</strong> de 1 568 bars
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-chart-pie me-2 text-muted"></i>Clustering des bars (60 clusters) basé sur des variables stratégiques
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-map-marker-alt me-2 text-muted"></i>Analyse de la concurrence locale (distance mer, nombre de voisins à 1km)
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-beer me-2 text-muted"></i>Identification du meilleur concurrent
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-chart-line me-2 text-muted"></i>Recommandations personnalisées (top 3 bières, top 3 fûts)
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-user-check me-2 text-muted"></i>Stratégie adaptée à chaque cluster de clients
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Colonne Livrables -->
+    <div class="col-md-6">
+        <div class="card mb-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-file-alt me-2"></i>Livrables</h3>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle me-2"></i>Outil d'aide à la décision interactif
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-chart-bar me-2 text-muted"></i>Dashboard de suivi des indicateurs de performance
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-store me-2 text-muted"></i>Matrice de positionnement concurrentiel
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-lightbulb me-2 text-muted"></i>Préconisations stratégiques par cluster
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-file-powerpoint me-2 text-muted"></i>Présentation des résultats et de la méthodologie
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Galerie Datathon -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-images me-2"></i>Présentation de l'outil</h3>
+        <div class="gallery-container">
+            <div class="main-image-wrapper">
+                <img id="mainImageDatathon" src="Photo/presentation_application.png" 
+                     class="img-fluid border" 
+                     alt="Application d'optimisation des ventes de bière">
+                <div id="mainCaptionDatathon" class="main-caption">Outil de recommandation personnalisé</div>
+            </div>
+
+            <div class="thumbnails-container">
+                <div class="thumbnail-item" onclick="changeMediaDatathon('Photo/comparaison_commande.png', 'Comparaison des commandes avec le meilleur concurrent')">
+                    <img src="Photo/comparaison_commande.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Comparaison des commandes </div>
+                </div>
+                
+                <div class="thumbnail-item" onclick="changeMediaDatathon('Photo/tendance_marché.png', 'Analyse des tendances du marchés par type de bière<')">
+                    <img src="Photo/tendance_marché.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Analyse des tendances</div>
+                </div>
+				
+<div class="thumbnail-item" onclick="changeMediaDatathon('Photo/code_marché.png', 'Extrait du code python permettant d\'afficher les tendances')">
+    <img src="Photo/code_marché.png" class="thumbnail-img">
+    <div class="thumbnail-caption">Extrait du code</div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Fonction pour la galerie du Datathon
+function changeMediaDatathon(imgSrc, caption) {
+    const mainImg = document.getElementById('mainImageDatathon');
+    const mainCaption = document.getElementById('mainCaptionDatathon');
+    
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.src = imgSrc;
+        mainCaption.textContent = caption;
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    document.querySelectorAll('#sae-datathon .thumbnail-img').forEach(thumb => {
+        const thumbPath = thumb.src.split('/').pop();
+        const newPath = imgSrc.split('/').pop();
+        
+        thumb.style.transform = 'scale(1)';
+        thumb.style.border = '2px solid #ddd';
+        
+        if (thumbPath === newPath) {
+            thumb.style.transform = 'scale(1.05)';
+            thumb.style.border = '2px solid var(--primary)';
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const firstThumb = document.querySelector('#sae-datathon .thumbnail-item:first-child img');
+    if (firstThumb) {
+        firstThumb.style.transform = 'scale(1.05)';
+        firstThumb.style.border = '2px solid var(--primary)';
+    }
+});
+</script>
+
+<!-- Méthodologie Datathon -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-cogs me-2"></i>Méthodologie</h3>
+        
+        <div class="row methodology-row">
+            <!-- Étape 1 -->
+            <div class="col-md-6 methodology-col">
+                <div class="methodology-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5 class="step-title">Clustering géographique</h5>
+                        <ul>
+                            <li>Segmentation des 1 568 bars en 60 clusters</li>
+                            <li>Variables : distance mer, nombre voisins 1km, zone littorale</li>
+                            <li>Caractéristiques : ancienneté, nombre de becs, familles de bière</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 2 -->
+            <div class="col-md-6 methodology-col">
+                <div class="methodology-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5 class="step-title">Analyse concurrentielle</h5>
+                        <ul>
+                            <li>Identification du meilleur concurrent proche</li>
+                            <li>Analyse des prix moyens et de l'offre disponible</li>
+                            <li>Analyse des corrélations entre variables</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row methodology-row">
+            <!-- Étape 3 -->
+            <div class="col-md-6 methodology-col">
+                <div class="methodology-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5 class="step-title">Personnalisation de l'offre</h5>
+                        <ul>
+                            <li>Recommandation top 3 bières par cluster</li>
+                            <li>Recommandation top 3 fûts adaptés</li>
+                            <li>Optimisation du prix selon la concurrence</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 4 -->
+            <div class="col-md-6 methodology-col">
+                <div class="methodology-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h5 class="step-title">Stratégie déployée</h5>
+                        <ul>
+                            <li>Proposition personnalisée par bar</li>
+                            <li>Ajustement du référencement produit</li>
+                            <li>Suivi des performances post-déploiement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Compétences Datathon -->
+<div class="card border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary">
+            <i class="fas fa-tools me-2"></i>Compétences développées
+        </h3>
+
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2"><span class="dot-green me-2"></span>Analyse de données géolocalisées</div>
+            <div class="col-md-6 mb-2"><span class="dot me-2"></span>Clustering et segmentation</div>
+            <div class="col-md-6 mb-2"><span class="dot-green me-2"></span>Recommandations stratégiques</div>
+            <div class="col-md-6 mb-2"><span class="dot-orange me-2"></span>Optimisation du référencement produit</div>
+        </div>
+
+        <div class="competence-reminder d-flex justify-content-end">
+            <div class="d-flex align-items-center me-3"><span class="dot"></span>Traiter</div>
+            <div class="d-flex align-items-center me-3"><span class="dot-green"></span>Analyser</div>
+            <div class="d-flex align-items-center"><span class="dot-orange"></span>Valoriser</div>
+        </div>
+    </div>
+</div>
+
+<!-- SAE - Outil d'analyse marketing pour supermarché -->
+<h2 id="sae-supermarche" class="sae-title">SAÉ 402 - Création d'un outil d'analyse marketing pour un supermarché</h2>
+
+<!-- Carte Problématique -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-question-circle me-2"></i>Problématique</h3>
+        <p class="lead">
+            Développement d'une application interactive pour analyser le comportement des clients achetant des produits "premium" et optimiser les campagnes marketing ciblées.
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Colonne Travail réalisé -->
+    <div class="col-md-6">
+        <div class="card mb-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-tasks me-2"></i>Travail réalisé</h3>
+                <div class="alert alert-info">
+                    <strong>Application Shiny complète</strong> avec analyse de données clients
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-database me-2 text-muted"></i>Nettoyage et préparation des données de transactions
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-user-tag me-2 text-muted"></i>Segmentation des clients acheteurs de produits "premium"
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-chart-line me-2 text-muted"></i>Analyse du comportement d'achat (fréquence, montant)
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-project-diagram me-2 text-muted"></i>Analyse multivariée (ACP et clustering)
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-bullseye me-2 text-muted"></i>Recommandations marketing personnalisées
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Colonne Livrables -->
+    <div class="col-md-6">
+        <div class="card mb-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-file-alt me-2"></i>Livrables</h3>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle me-2"></i>Solution complète livrée
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fab fa-r-project me-2 text-muted"></i>Application Shiny (ui.R, server.R, global.R)
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-chart-pie me-2 text-muted"></i>Tableau de bord interactif avec indicateurs clés
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-users me-2 text-muted"></i>Profils types de clients acheteurs "premium"
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-file-pdf me-2 text-muted"></i>Proposition de stratégie marketing
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Galerie photo -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-images me-2"></i>L'application</h3>
+        <div class="gallery-container">
+            <div class="main-image-wrapper">
+                <img id="mainImageSupermarche" src="Photo/Tdb.png" 
+                     class="img-fluid border" 
+                     alt="Tableau de bord de l'application">
+                <div id="mainCaptionSupermarche" class="main-caption">Tableau de bord principal</div>
+            </div>
+
+            <div class="thumbnails-container">
+                <div class="thumbnail-item" onclick="changeMediaSupermarche('Photo/Tdb.png', 'Tableau de bord principal avec KPI')">
+                    <img src="Photo/Tdb.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Tableau de bord</div>
+                </div>
+                
+                <div class="thumbnail-item" onclick="changeMediaSupermarche('Photo/Acheteur.png', 'Profil acheteur')">
+                    <img src="Photo/Acheteur.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Profil acheteurs</div>
+                </div>
+                
+
+                
+                <div class="thumbnail-item" onclick="changeMediaSupermarche('Photo/Recommendation.png', 'Recommandations marketing')">
+                    <img src="Photo/Recommendation.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Recommandations</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Fonction pour la galerie
+function changeMediaSupermarche(imgSrc, caption) {
+    const mainImg = document.getElementById('mainImageSupermarche');
+    const mainCaption = document.getElementById('mainCaptionSupermarche');
+    
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.src = imgSrc;
+        mainCaption.textContent = caption;
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    document.querySelectorAll('#sae-supermarche .thumbnail-img').forEach(thumb => {
+        const thumbPath = thumb.src.split('/').pop();
+        const newPath = imgSrc.split('/').pop();
+        
+        thumb.style.transform = 'scale(1)';
+        thumb.style.border = '2px solid #ddd';
+        
+        if (thumbPath === newPath) {
+            thumb.style.transform = 'scale(1.05)';
+            thumb.style.border = '2px solid var(--primary)';
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const firstThumb = document.querySelector('#sae-supermarche .thumbnail-item:first-child img');
+    if (firstThumb) {
+        firstThumb.style.transform = 'scale(1.05)';
+        firstThumb.style.border = '2px solid var(--primary)';
+    }
+});
+</script>
+
+<!-- Méthodologie -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-cogs me-2"></i>Méthodologie</h3>
+        
+        <div class="row methodology-row">
+            <!-- Étape 1 -->
+            <div class="col-md-6 methodology-col">
+                <div class="methodology-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5 class="step-title">Analyse exploratoire</h5>
+                        <ul>
+                            <li>Identification des variables clés</li>
+                            <li>Statistiques descriptives sur les produits "premium"</li>
+                            <li>Analyse des corrélations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 2 -->
+            <div class="col-md-6 methodology-col">
+                <div class="methodology-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5 class="step-title">Segmentation</h5>
+                        <ul>
+                            <li>Classification des clients par comportement</li>
+                            <li>Analyse des paniers moyens</li>
+                            <li>Identification des profils types</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row methodology-row">
+            <!-- Étape 3 -->
+            <div class="col-md-6 methodology-col">
+                <div class="methodology-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5 class="step-title">Analyse multivariée</h5>
+                        <ul>
+                            <li>Réalisation d'une ACP</li>
+                            <li>Clustering hiérarchique</li>
+                            <li>Interprétation des axes factoriels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Étape 4 -->
+            <div class="col-md-6 methodology-col">
+                <div class="methodology-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h5 class="step-title">Stratégie marketing</h5>
+                        <ul>
+                            <li>Proposition de campagnes ciblées</li>
+                            <li>Optimisation des promotions</li>
+                            <li>Personnalisation des offres</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Compétences -->
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <h3 class="card-title text-primary">
+      <i class="fas fa-tools me-2"></i>Compétences développées
+    </h3>
+
+    <!-- Liste des compétences -->
+    <div class="row mb-3">
+      <div class="col-md-6 mb-2"><span class="dot-green me-2"></span>Analyse de données transactionnelles</div>
+      <div class="col-md-6 mb-2"><span class="dot me-2"></span>Segmentation clientèle</div>
+      <div class="col-md-6 mb-2"><span class="dot-orange me-2"></span>Analyse multivariée (ACP, clustering)</div>
+      <div class="col-md-6 mb-2"><span class="dot-green me-2"></span>Développement d'applications Shiny</div>
+      <div class="col-md-6 mb-2"><span class="dot-orange me-2"></span>Proposition de stratégie marketing</div>
+    </div>
+
+    <!-- Légende -->
+    <div class="competence-reminder d-flex justify-content-end">
+      <div class="d-flex align-items-center me-3"><span class="dot"></span>Traiter</div>
+      <div class="d-flex align-items-center me-3"><span class="dot-green"></span>Analyser</div>
+      <div class="d-flex align-items-center"><span class="dot-orange"></span>Valoriser</div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<!-- SAE - Analyse de sécurité transfusionnelle avec R -->
+<h2 id="sae-transfusion" class="sae-title">Alternance - Analyse de complications post-transfusionnelles</h2>
+
+<!-- Carte Problématique -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-heartbeat me-2"></i>Problématique</h3>
+        <p class="lead">
+            Identification des complications post-transfusionnelles non déclarées par croisement de données entre le système transfusionnel INLOG et le DPI E-Roz.
+        </p>
+        <div class="alert alert-secondary mt-3">
+            <i class="fas fa-bullseye me-2"></i>
+            <strong>Objectif :</strong> Détecter les œdèmes aigus pulmonaires (OAP) survenant dans les 24h suivant une transfusion.
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Colonne Méthodologie -->
+    <div class="col-md-6">
+        <div class="card mb-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-cogs me-2"></i>Méthodologie</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-database me-2 text-muted"></i>
+                        <strong>Sources :</strong><br>
+                        INLOG (transfusions) × E-Roz/MEDIS (urgences)
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-code me-2 text-muted"></i>
+                        <strong>Technique :</strong><br>
+                        Jointure sur IPP après normalisation
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-filter me-2 text-muted"></i>
+                        <strong>Critères :</strong><br>
+                        Patients transfusés (J-1/J0) puis venus aux urgences
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-exclamation-triangle me-2 text-muted"></i>
+                        <strong>Défi :</strong><br>
+                        Formats disparates entre les systèmes
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Colonne Compétences -->
+    <div class="col-md-6">
+        <div class="card mb-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-tools me-2"></i>Process R Studio</h3>
+                <div class="code-snippet mb-3">
+                    <pre><code class="language-r"># Normalisation IPP
+df_transfusion$IPP <- str_pad(df_transfusion$IPP, 9, pad = "0")
+
+# Jointure et calcul délai
+result <- inner_join(df_transfusion, df_urgences, by = "IPP") %>%
+  mutate(delai = as.numeric(difftime(date_urgences, date_transfusion, units = "days"))) %>%
+  filter(delai %in% c(0, 1)) %>%
+  distinct(IPP, .keep_all = TRUE)
+
+# Export Excel
+write_xlsx(result, "complications_transfusionnelles.xlsx")</code></pre>
+                </div>
+                <div class="alert alert-info">
+                    <i class="fas fa-lightbulb me-2"></i> Packages utilisés : <strong>tidyverse, writexl, stringr</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Galerie -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary mb-4"><i class="fas fa-images me-2"></i>Processus technique</h3>
+                <div class="gallery-container">
+                    <div class="main-image-wrapper mb-3">
+                        <img id="mainImageTransfusion" src="Photo/UF.png"
+                             class="img-fluid rounded" 
+                             alt="Workflow d'analyse">
+                        <div id="mainCaptionTransfusion" class="main-caption mt-2">UF concerant les urgences</div>
+                    </div>
+
+                    <div class="thumbnails-container d-flex justify-content-between">
+                        <div class="thumbnail-item text-center" onclick="changeMediaTransfusion('Photo/UF.png', 'UF d\'analyse')">
+                            <img src="Photo/UF.png" class="thumbnail-img rounded">
+                            <div class="thumbnail-caption mt-1">UF d'urgences</div>
+                        </div>
+                        
+                        <div class="thumbnail-item text-center" onclick="changeMediaTransfusion('Photo/IPP.png', 'Normalisation des IPP')">
+                            <img src="Photo/IPP.png" class="thumbnail-img rounded">
+                            <div class="thumbnail-caption mt-1">Normalisation IPP</div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bilan -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-chart-line me-2"></i>Résultats & Bilan</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="achievement-box">
+                    <div class="achievement-icon bg-primary">
+                        <!-- ICÔNE SUPPRIMÉE -->
+                    </div>
+                    <div>
+                        <h5>Résultats concrets</h5>
+                        <ul>
+                            <li>Liste exhaustive des cas suspects OAP</li>
+                            <li>Détection de sous-déclarations</li>
+                            <li>Base pour améliorer l'hémovigilance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="achievement-box">
+                    <div class="achievement-icon bg-success">
+                        <!-- ICÔNE SUPPRIMÉE -->
+                    </div>
+                    <div>
+                        <h5>Acquis professionnels</h5>
+                        <ul>
+                            <li>Maîtrise des jointures complexes dans R</li>
+                            <li>Gestion des formats hétérogènes</li>
+                            <li>Communication inter-métiers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+// Fonction pour la galerie transfusion
+function changeMediaTransfusion(imgSrc, caption) {
+    document.getElementById('mainImageTransfusion').src = imgSrc;
+    document.getElementById('mainCaptionTransfusion').textContent = caption;
+    
+    // Animation
+    const mainImg = document.getElementById('mainImageTransfusion');
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    // Mise en évidence miniature
+    document.querySelectorAll('#sae-transfusion .thumbnail-img').forEach(thumb => {
+        thumb.style.transform = 'scale(1)';
+        thumb.style.boxShadow = 'none';
+        if (thumb.src === imgSrc) {
+            thumb.style.transform = 'scale(1.05)';
+            thumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.2)';
+        }
+    });
+}
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    const firstThumb = document.querySelector('#sae-transfusion .thumbnail-item:first-child img');
+    if (firstThumb) {
+        firstThumb.style.transform = 'scale(1.05)';
+        firstThumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.2)';
+    }
+});
+</script>
+
+
+
+
+
+
+<!-- Compétences -->
+<div class="card mb-4 border-0 shadow-sm">
+  <div class="card-body">
+  <div class="card-body">
+    <h3 class="card-title text-primary">
+      <i class="fas fa-tools me-2"></i>Compétences développées
+    </h3>
+    <!-- Liste des compétences -->
+    <div class="row mb-3">
+      <div class="col-md-6 mb-2"><span class="dot-green me-2"></span>Manipulation de données sensibles</div>
+      <div class="col-md-6 mb-2"><span class="dot me-2"></span>Programmation R avancée</div>
+      <div class="col-md-6 mb-2"><span class="dot-orange me-2"></span>Croisement de sources hétérogènes</div>
+      <div class="col-md-6 mb-2"><span class="dot-green me-2"></span>Travail en milieu hospitalier</div>
+      <div class="col-md-6 mb-2"><span class="dot-orange me-2"></span>Communication interprofessionnelle</div>
+    </div>
+
+    <!-- Légende -->
+    <div class="competence-reminder d-flex justify-content-end">
+      <div class="d-flex align-items-center me-3"><span class="dot-green"></span>Analyser</div>
+      <div class="d-flex align-items-center me-3"><span class="dot"></span>Traiter</div>
+      <div class="d-flex align-items-center"><span class="dot-orange"></span>Valoriser</div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="tab-pane" id="valoriser">
+    <div class="container-fluid px-4 py-3">
+	
+	<!-- SAE - Analyse d'accidentologie routière avec Power BI -->
+<h2 id="sae-accident" class="sae-title">SAÉ 301 - Analyse d'accidentologie routière (2018-2022)</h2>
+
+<!-- Carte Problématique -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-car-crash me-2"></i>Problématique</h3>
+        <p class="lead">
+            Analyse des facteurs démographiques influençant la fréquence et gravité des accidents routiers en France (2018-2022) à travers un outil Power BI interactif pour la prévention routière.
+        </p>
+        <div class="alert alert-secondary mt-3">
+            <strong>Objectif :</strong> Identifier les profils à risque et périodes critiques pour des actions ciblées de sécurité routière.
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Colonne Architecture -->
+    <div class="col-md-4">
+        <div class="card mb-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-database me-2"></i>Modèle de données</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-table me-2 text-muted"></i>
+                        <strong>4 tables principales :</strong><br>
+                        Caractéristiques • Usagers • Véhicules • Lieux
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-key me-2 text-muted"></i>
+                        <strong>Relations :</strong><br>
+                        Clés primaires/étrangères optimisées
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-exchange-alt me-2 text-muted"></i>
+                        <strong>Hiérarchies :</strong><br>
+                        Tranches d'âge • Catégories usagers • Types de routes
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Colonne Transformations -->
+    <div class="col-md-4">
+        <div class="card mb-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-cogs me-2"></i>Transformations</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-code me-2 text-muted"></i>
+                        <strong>DAX avancé :</strong><br>
+                        Calcul âge • Format dates • Regroupements
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-filter me-2 text-muted"></i>
+                        <strong>Nettoyage :</strong><br>
+                        Variables codées traduites (25+ colonnes)
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-trash-alt me-2 text-muted"></i>
+                        <strong>Optimisation :</strong><br>
+                        Suppression variables non pertinentes
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Colonne Visualisations -->
+    <div class="col-md-4">
+        <div class="card mb-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-chart-line me-2"></i>Dashboard</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-layer-group me-2 text-muted"></i>
+                        <strong>3 pages :</strong><br>
+                        Accueil • Temporelle • Gravité
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-sliders-h me-2 text-muted"></i>
+                        <strong>Filtres croisés :</strong><br>
+                        Sexe • Âge • Catégorie • Année
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-mobile-alt me-2 text-muted"></i>
+                        <strong>Responsive :</strong><br>
+                        Adapté à tous devices
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Galerie pour SAE Accidentologie -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary mb-4"><i class="fas fa-images me-2"></i>Démonstration visuelle</h3>
+                <div class="gallery-container">
+                    <div class="main-image-wrapper mb-3">
+                        <img id="mainImageAccident" src="Photo/acceuil.png"
+                             class="img-fluid rounded" 
+                             alt="Page d'accueil du dashboard">
+                        <div id="mainCaptionAccident" class="main-caption mt-2">Page d'accueil - Vue d'ensemble</div>
+                    </div>
+
+                    <div class="thumbnails-container d-flex justify-content-between">
+                        <div class="thumbnail-item text-center" onclick="changeMediaAccident('Photo/acceuils.png', 'Page d\'accueil - Vue d\'ensemble')">
+                            <img src="Photo/acceuil.png" class="thumbnail-img rounded">
+                            <div class="thumbnail-caption mt-1">Accueil</div>
+                        </div>
+                        
+                        <div class="thumbnail-item text-center" onclick="changeMediaAccident('Photo/Temporelle.png', 'Analyse temporelle - Périodes critiques')">
+                            <img src="Photo/Temporelle.png" class="thumbnail-img rounded">
+                            <div class="thumbnail-caption mt-1">Analyse temporelle</div>
+                        </div>
+                        
+                        <div class="thumbnail-item text-center" onclick="changeMediaAccident('Photo/Gravitationnelle.png', 'Analyse gravité - Facteurs de risque')">
+                            <img src="Photo/Gravitationnelle.png" class="thumbnail-img rounded">
+                            <div class="thumbnail-caption mt-1">Analyse gravité</div>
+                        </div>
+                        
+                        <div class="thumbnail-item text-center" onclick="changeMediaAccident('Photo/Dax.png', 'Filtres démographiques interactifs')">
+                            <img src="Photo/Dax.png" class="thumbnail-img rounded">
+                            <div class="thumbnail-caption mt-1">Extrait requête DAX</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Méthodologie en colonnes -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-cogs me-2"></i>Méthodologie</h3>
+        <div class="row">
+            <!-- Colonne 1 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="methodology-column">
+                    <div class="methodology-icon bg-primary">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h5>Exploration</h5>
+                    <ul>
+                        <li>Analyse du fichier BAAC (ONISR)</li>
+                        <li>Validation des sources 2018-2022</li>
+                        <li>Identification variables clés</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Colonne 2 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="methodology-column">
+                    <div class="methodology-icon bg-success">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h5>Modélisation</h5>
+                    <ul>
+                        <li>Création relations entre tables</li>
+                        <li>Normalisation des données</li>
+                        <li>Création hiérarchies</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Colonne 3 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="methodology-column">
+                    <div class="methodology-icon bg-info">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h5>Transformations</h5>
+                    <ul>
+                        <li>Traduction variables codées</li>
+                        <li>Calcul âge victimes</li>
+                        <li>Formattage dates/heures</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Colonne 4 -->
+            <div class="col-md-6 col-lg-3">
+                <div class="methodology-column">
+                    <div class="methodology-icon bg-warning">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h5>Visualisation</h5>
+                    <ul>
+                        <li>Graphiques adaptés</li>
+                        <li>Indicateurs clés</li>
+                        <li>Optimisation responsive</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.methodology-column {
+    height: 100%;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.methodology-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.methodology-column h5 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.methodology-column ul {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 0.9rem;
+}
+.methodology-column li {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .methodology-column {
+        margin-bottom: 30px;
+    }
+}
+</style>
+
+<!-- Compétences -->
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <h3 class="card-title text-primary">
+      <i class="fas fa-tools me-2"></i>Compétences mobilisées
+    </h3>
+
+    <!-- Liste des compétences -->
+    <div class="row mb-3">
+      <div class="col-md-6 mb-2">
+        <span class="dot-green me-2"></span>
+        Modélisation données complexes
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <span class="dot me-2"></span>
+        DAX avancé
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <span class="dot-orange me-2"></span>
+        DataViz interactive
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <span class="dot-green me-2"></span>
+        Analyse multidimensionnelle
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <span class="dot-orange me-2"></span>
+        Gestion projet agile
+      </div>
+    </div>
+
+    <!-- Légende -->
+    <div class="competence-reminder d-flex justify-content-end">
+      <div class="d-flex align-items-center me-3">
+        <span class="dot-green"></span>
+        <span class="fw-bold text-green ms-2">Analyser</span>
+      </div>
+
+      <div class="d-flex align-items-center me-3">
+        <span class="dot"></span>
+        <span class="fw-bold text-red ms-2">Traiter</span>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <span class="dot-orange"></span>
+        <span class="fw-bold text-orange ms-2">Valoriser</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+	
+
+        <!-- Deuxième partie : Optimisation du bloc opératoire -->
+        <div class="sae-section mt-5 pt-4 border-top">
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 id="saebloc" class="sae-title border-bottom pb-2">Alternance - Optimisation du pilotage du bloc opératoire</h2>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary">
+                                <i class="fas fa-hospital me-2"></i>Contexte
+                            </h3>
+                            <p class="lead mb-2">
+                                Mise en place d'un outil de pilotage du bloc opératoire à partir du logiciel ADVANCE.
+                            </p>
+                            <div class="alert alert-info py-2 mt-2">
+                                <i class="fas fa-info-circle me-2"></i> 
+                                <strong>Problématique :</strong> Advance ne propose pas de module statistiques.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary">
+                                <i class="fas fa-lightbulb me-2"></i>Solution
+                            </h3>
+                            <div class="alert alert-success py-2">
+                                <strong>Tableau de bord avec indicateurs clés</strong>
+                            </div>
+                            <ul class="list-group list-group-flush border-top">
+                                <li class="list-group-item d-flex align-items-center">
+                                    <span class="badge bg-primary me-3"><i class="fas fa-calendar-alt"></i></span>
+                                    Fusion planning prévisionnel/ADVANCE
+                                </li>
+                                <li class="list-group-item d-flex align-items-center">
+                                    <span class="badge bg-primary me-3"><i class="fas fa-chart-bar"></i></span>
+                                    Indicateurs personnalisés
+                                </li>
+                                <li class="list-group-item d-flex align-items-center">
+                                    <span class="badge bg-primary me-3"><i class="fas fa-clock"></i></span>
+                                    Analyse temps d'occupation
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary">
+                                <i class="fas fa-tachometer-alt me-2"></i>Indicateurs
+                            </h3>
+                            <div class="alert alert-warning py-2">
+                                <i class="fas fa-chart-line me-2"></i> <strong>Mesures clés</strong>
+                            </div>
+                            <ul class="list-group list-group-flush border-top">
+                                <li class="list-group-item">
+                                    <span class="badge bg-secondary me-2">1</span>
+                                    Taux d'occupation global
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="badge bg-secondary me-2">2</span>
+                                    Taux de débordement
+                                </li>
+                                <li class="list-group-item">
+                                    <span class="badge bg-secondary me-2">3</span>
+                                    Taux de retard
+                                </li>
+								<li class="list-group-item">
+                                    <span class="badge bg-secondary me-2">3</span>
+                                    Temps entre-patients
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+<!-- Illustrations - Version corrigée -->
+<div class="row mt-4">  <!-- Changement de mb-4 à mt-4 pour l'espacement -->
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary mb-4"><i class="fas fa-images me-2"></i>Illustrations</h3>
+                <div class="gallery-container">
+                    <div class="main-image-wrapper mb-3">
+                        <img id="mainImageBloc" src="Photo/Planning.png"
+                             class="img-fluid rounded" 
+                             alt="Exemple tableau de bord">
+                        <div id="mainCaptionBloc" class="main-caption mt-2">Planning théorique retravailler</div>
+                    </div>
+
+                    <div class="thumbnails-container d-flex justify-content-between">
+                        <div class="thumbnail-item text-center" onclick="changeMediaBloc('Photo/Planning.png', 'Planning théorique retravailler')">
+                            <img src="Photo/Planning.png" class="thumbnail-img rounded">
+                            <div class="thumbnail-caption mt-1">Planning théorique retravailler</div>
+                        </div>
+                        
+                        <div class="thumbnail-item text-center" onclick="changeMediaBloc('Photo/Retard.png', 'Débordement par spécialité')">
+                            <img src="Photo/Retard.png" class="thumbnail-img rounded">
+                            <div class="thumbnail-caption mt-1">Débordement par spécialité</div>
+                        </div>
+                        
+                        <div class="thumbnail-item text-center" onclick="changeMediaBloc('Photo/Débordement.png', 'Retard')">
+                            <img src="Photo/Débordement.png" class="thumbnail-img rounded">
+                            <div class="thumbnail-caption mt-1">Retard de commencement par chirurgien</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Bloc compétences -->
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <div class="competence-reminder justify-content-end d-flex">
+                <div class="d-flex align-items-center me-3">
+                    <span class="dot-green"></span>
+                    <span class="fw-bold text-green ms-2">Analyser</span>
+                </div>
+                <div class="d-flex align-items-center me-3">
+                    <span class="dot"></span>
+                    <span class="fw-bold text-red ms-2">Traiter</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="dot-orange"></span>
+                    <span class="fw-bold text-orange ms-2">Valoriser</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+<style>
+/* Timeline */
+.timeline {
+    position: relative;
+    padding-left: 50px;
+    margin-top: 30px;
+}
+.timeline:before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e9ecef;
+}
+.timeline-step {
+    position: relative;
+    margin-bottom: 30px;
+}
+.timeline-icon {
+    position: absolute;
+    left: -50px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+.timeline-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Feature Box */
+.feature-box {
+    display: flex;
+    margin-bottom: 20px;
+}
+.feature-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+.feature-box h5 {
+    margin-top: 5px;
+    color: #2c3e50;
+}
+.feature-box p {
+    margin-bottom: 0;
+    color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+    .timeline {
+        padding-left: 40px;
+    }
+    .timeline-icon {
+        left: -40px;
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    .feature-box {
+        flex-direction: column;
+    }
+    .feature-icon {
+        margin-bottom: 10px;
+    }
+}
+</style>
+<script>
+// Fonction pour la galerie accidentologie
+function changeMediaAccident(imgSrc, caption) {
+    document.getElementById('mainImageAccident').src = imgSrc;
+    document.getElementById('mainCaptionAccident').textContent = caption;
+    
+    // Animation
+    const mainImg = document.getElementById('mainImageAccident');
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    // Mise en évidence miniature
+    document.querySelectorAll('#sae-accidentologie .thumbnail-img').forEach(thumb => {
+        thumb.style.transform = 'scale(1)';
+        thumb.style.boxShadow = 'none';
+        if (thumb.src === imgSrc) {
+            thumb.style.transform = 'scale(1.05)';
+            thumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.2)';
+        }
+    });
+}
+
+// Initialisation au chargement
+document.addEventListener('DOMContentLoaded', function() {
+    const firstThumb = document.querySelector('#sae-accidentologie .thumbnail-item:first-child img');
+    if (firstThumb) {
+        firstThumb.style.transform = 'scale(1.05)';
+        firstThumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.2)';
+    }
+});
+</script>
+<script>
+// Fonction pour la galerie du bloc opératoire
+function changeMediaBloc(imgSrc, caption) {
+    document.getElementById('mainImageBloc').src = imgSrc;
+    document.getElementById('mainCaptionBloc').textContent = caption;
+    
+    // Animation
+    const mainImg = document.getElementById('mainImageBloc');
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    // Mise en évidence miniature
+    document.querySelectorAll('#saebloc .thumbnail-img').forEach(thumb => {
+        thumb.style.transform = 'scale(1)';
+        thumb.style.boxShadow = 'none';
+        if (thumb.src === imgSrc) {
+            thumb.style.transform = 'scale(1.05)';
+            thumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.2)';
+        }
+    });
+}
+</script>
+<script>
+// Fonction pour changer les médias dans la partie Valoriser
+function changeMediaValoriser(imgSrc, caption) {
+    document.getElementById('mainImageValoriser').src = imgSrc;
+    document.getElementById('mainCaptionValoriser').textContent = caption;
+    
+    // Animation
+    const mainImg = document.getElementById('mainImageValoriser');
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    // Effet sur les miniatures
+    const thumbnails = document.querySelectorAll('#valoriser .thumbnail-img');
+    thumbnails.forEach(thumb => {
+        thumb.style.transform = 'scale(1)';
+        if (thumb.src === imgSrc) {
+            thumb.style.transform = 'scale(0.95)';
+            thumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.2)';
+        } else {
+            thumb.style.boxShadow = 'none';
+        }
+    });
+}
+</script>
+<div class="tab-pane" id="modeliser">
+    <div class="sae-container">
+        <h2 id="sae401" class="sae-title">SAÉ 401- Régression linéaire multiple</h2>
+        
+        <!-- Problématique -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-question-circle me-2"></i>Problématique</h3>
+                <p class="lead">
+                    Comment expliquer et prédire la <span class="fw-bold text-primary">durée du sommeil</span> à partir de données sociodémographiques, physiologiques et comportementales ?
+                </p>
+                <p class="mb-0">Projet réalisé dans le cadre du module "Modèle linéaire" du parcours EMS.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><i class="fas fa-database me-2"></i>Données</h3>
+                        <div class="alert alert-info">
+                            <strong>373 individus</strong> - <strong>13 variables</strong> (6 qualitatives, 7 quantitatives)
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="fas fa-user me-2 text-muted"></i>Sociodémographie : âge, sexe, profession</li>
+                            <li class="list-group-item"><i class="fas fa-running me-2 text-muted"></i>Mode de vie : activité physique, pas quotidiens</li>
+                            <li class="list-group-item"><i class="fas fa-heartbeat me-2 text-muted"></i>Physiologie : IMC, fréquence cardiaque, tension</li>
+                            <li class="list-group-item"><i class="fas fa-bed me-2 text-muted"></i>Sommeil : durée, qualité, troubles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary"><i class="fas fa-trophy me-2"></i>Résultats clés</h3>
+                        <div class="alert alert-success">
+                            <i class="fas fa-star me-2"></i>Modèle optimal : <strong>R² = 0.97</strong> - <strong>RMSE = 0.14</strong>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><span class="badge bg-primary me-2">1</span>Qualité du sommeil</li>
+                            <li class="list-group-item"><span class="badge bg-primary me-2">2</span>Activité physique</li>
+                            <li class="list-group-item"><span class="badge bg-primary me-2">3</span>Niveau de stress</li>
+                            <li class="list-group-item"><span class="badge bg-primary me-2">4</span>Fréquence cardiaque</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Méthodologie en 2 colonnes -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary mb-4"><i class="fas fa-cogs me-2"></i>Méthodologie</h3>
+                
+                <div class="row methodology-row">
+                    <!-- Étape 1 -->
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Préparation des données</h5>
+                                <ul>
+                                    <li>Nettoyage des valeurs manquantes</li>
+                                    <li>Recodage des variables qualitatives</li>
+                                    <li>Séparation pression artérielle</li>
+                                    <li>Normalisation des variables</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 2 -->
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Analyse exploratoire</h5>
+                                <ul>
+                                    <li>Statistiques descriptives</li>
+                                    <li>Visualisations interactives</li>
+                                    <li>Matrice de corrélations</li>
+                                    <li>Identification outliers</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row methodology-row">
+                    <!-- Étape 3 -->
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Modélisation</h5>
+                                <div class="model-comparison">
+                                    <div class="model-card">
+                                        <h6><i class="fas fa-cube me-2"></i>Modèle complet</h6>
+                                        <ul>
+                                            <li>13 variables initiales</li>
+                                        </ul>
+                                    </div>
+                                    <div class="model-card">
+                                        <h6><i class="fas fa-filter me-2"></i>Modèle optimisé</h6>
+                                        <ul>
+                                            <li>7 variables retenues</li>
+                                            <li>Sélection AIC/BIC</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Étape 4 -->
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Validation</h5>
+                                <ul>
+                                    <li>Test de colinéarité (VIF)</li>
+                                    <li>Analyse des résidus</li>
+                                    <li>Test d'homoscédasticité</li>
+                                    <li>Comparaison AIC/BIC</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <!-- Étape 5 -->
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Interprétation</h5>
+                                <ul>
+                                    <li>Coefficients standardisés</li>
+                                    <li>Importance relative</li>
+                                    <li>Intervalles de confiance</li>
+                                    <li>Prévisions profils types</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Visualisations améliorées -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title text-primary"><i class="fas fa-images me-2"></i>Résultats visuels</h3>
+        <div class="gallery-container">
+            <div class="main-image-wrapper">
+                <img id="mainImageModeliser" src="Photo/Distribution.png" 
+                     class="img-fluid" 
+                     alt="Performances du modèle">
+                <div id="mainCaptionModeliser" class="main-caption">Variable d'intéret</div>
+            </div>
+
+            <div class="thumbnails-container">
+                <div class="thumbnail-item" onclick="changeMediaModeliser('Photo/Matrice.png', 'Performances du modèle')">
+                    <img src="Photo/Matrice.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Matrice de corrélation</div>
+                </div>
+                
+                <div class="thumbnail-item" onclick="changeMediaModeliser('Photo/residu.png', 'Diagnostics des résidus')">
+                    <img src="Photo/residu.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Diagnostics</div>
+                </div>
+                
+                <div class="thumbnail-item" onclick="changeMediaModeliser('Photo/Variance.png', 'Comparaison de deux modèles')">
+                    <img src="Photo/Variance.png" class="thumbnail-img">
+                    <div class="thumbnail-caption">Analyse des variances</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<script>
+// Fonction pour la galerie Modéliser
+function changeMediaModeliser(imgSrc, caption) {
+    const mainImg = document.getElementById('mainImageModeliser');
+    const mainCaption = document.getElementById('mainCaptionModeliser');
+    
+    // Animation
+    mainImg.style.opacity = '0';
+    setTimeout(() => {
+        mainImg.src = imgSrc;
+        mainCaption.textContent = caption;
+        mainImg.style.opacity = '1';
+    }, 300);
+    
+    // Met en évidence la miniature sélectionnée
+    document.querySelectorAll('#modeliser .thumbnail-img').forEach(thumb => {
+        // Normalisation des chemins pour comparaison
+        const thumbPath = thumb.src.split('/').pop();
+        const newPath = imgSrc.split('/').pop();
+        
+        thumb.style.transform = 'scale(1)';
+        thumb.style.boxShadow = 'none';
+        thumb.style.borderColor = '#ddd';
+        
+        if (thumbPath === newPath) {
+            thumb.style.transform = 'scale(1.05)';
+            thumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.1)';
+            thumb.style.borderColor = 'var(--primary)';
+        }
+    });
+}
+
+// Initialisation - sélectionne la première image par défaut
+document.addEventListener('DOMContentLoaded', function() {
+    const firstThumb = document.querySelector('#modeliser .thumbnail-item:first-child img');
+    if (firstThumb) {
+        firstThumb.style.transform = 'scale(1.05)';
+        firstThumb.style.boxShadow = '0 0 8px rgba(0,0,0,0.1)';
+        firstThumb.style.borderColor = 'var(--primary)';
+    }
+});
+</script>
+
+        <!-- Compétences -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><i class="fas fa-tools me-2"></i>Compétences mobilisées</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Préparation avancée des données</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Modélisation statistique</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Validation des hypothèses</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Interprétation des résultats</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Visualisation des données</li>
+                            <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>Communication scientifique</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compétence -->
+        <div class="text-center mt-4">
+            <div class="competence-reminder justify-content-end d-flex">
+                <div class="d-flex align-items-center">
+                    <span class="dot-blue"></span>
+                    <span class="fw-bold text-blue ms-2">Modéliser</span>
+                </div>
+            </div>
+        </div>
+
+    <div class="sae-container">
+        <h2 id="saePOP" class="sae-title">Alternance – Évaluation du dispositif Plateforme d'Orientation Patient(POP)</h2>
+        
+        <!-- Problématique -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary">
+                    <i class="fas fa-question-circle me-2"></i>Problématique
+                </h3>
+                <p class="lead">
+                    Comment évaluer l’impact du <span class="fw-bold text-primary">dispositif POP</span> sur la 
+                    <span class="fw-bold text-primary">durée moyenne de séjour</span> et les 
+                    <span class="fw-bold text-primary">réhospitalisations à 30 jours</span> ?
+                </p>
+                <p class="mb-0">
+                    Étude réalisée au <strong>Centre Hospitalier de Saint-Brieuc</strong> en collaboration avec l’HAD du Pays Briochin. Dispositif expérimental mis en place de 2021 à 2024 permettant de sécuriser et de coordonner les sorties hospitalières jugées complexes.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Données -->
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">
+                            <i class="fas fa-database me-2"></i>Données
+                        </h3>
+                        <div class="alert alert-info">
+                            <strong>940 séjours appariés</strong> – <strong>POP vs non-POP</strong>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <i class="fas fa-procedures me-2 text-muted"></i>Fichiers RSS MCO (2021–2024)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-hospital me-2 text-muted"></i>Formulaires e-Roz (POP)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-ambulance me-2 text-muted"></i>Données urgences (MEDIS)
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-user me-2 text-muted"></i>Création de variables d'appariement à travers les codes CIM-10 : Score de Charlson, facteurs sociaux-environnementaux
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Résultats -->
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">
+                            <i class="fas fa-trophy me-2"></i>Résultats clés
+                        </h3>
+                        <div class="alert alert-success">
+                            <i class="fas fa-star me-2"></i>
+                            DMS POP > non-POP : <strong>20,4 vs 12,5 jours</strong>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <span class="badge bg-primary me-2">1</span>Complexité clinique plus élevée dans le groupe POP
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge bg-primary me-2">2</span>Réhospitalisation à 30 jours ≈ 18 % (Non significatif)
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge bg-primary me-2">3</span>Pas de différence significative de survie (log-rank)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Méthodologie -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary mb-4">
+                    <i class="fas fa-cogs me-2"></i>Méthodologie
+                </h3>
+
+                <div class="row methodology-row">
+
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Préparation des données</h5>
+                                <ul>
+                                    <li>Nettoyage RSS / e-Roz</li>
+                                    <li>Pseudonymisation CNIL</li>
+                                    <li>Gestion des doublons</li>
+                                    <li>Construction population POP</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Création variables</h5>
+                                <ul>
+                                    <li>Score de Charlson</li>
+                                    <li>Facteurs socio-environnementaux</li>
+                                    <li>Entrée urgences</li>
+                                    <li>Variables cliniques PMSI</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row methodology-row">
+
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Appariement</h5>
+                                <ul>
+                                    <li>Score de propension (glm)</li>
+                                    <li>Nearest neighbors</li>
+                                    <li>Ratio 1:2 POP / non-POP</li>
+                                    <li>SMD pour validation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 methodology-col">
+                        <div class="methodology-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h5 class="step-title">Analyse</h5>
+                                <ul>
+                                    <li>DMS</li>
+                                    <li>Réhospitalisation à 30 jours</li>
+                                    <li>Kaplan-Meier</li>
+                                    <li>Modèle de Cox</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Visualisations EMOIS -->
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+
+        <h3 class="card-title text-primary">
+            <i class="fas fa-images me-2"></i>Résultats visuels
+        </h3>
+
+        <div class="gallery-container">
+
+            <!-- IMAGE PRINCIPALE -->
+            <div class="main-image-wrapper">
+                <img id="mainImageModeliser2"
+                     src="Photo/Appariement.jpg"
+                     class="img-fluid"
+                     alt="Résultats des critères de jugement">
+
+                <div id="mainCaptionModeliser" class="main-caption">
+                    FlowChart des étape de l'appariement
+                </div>
+            </div>
+
+            <!-- MINIATURES -->
+            <div class="thumbnails-container">
+			
+			                <div class="thumbnail-item"
+                     onclick="changeMediaModeliser('Photo/Appariement.jpg','Appariement')">
+                    <img src="Photo/Appariement.jpg" class="thumbnail-img">
+                    <div class="thumbnail-caption"> FlowChart des étape de l'appariement</div>
+                </div>
+
+                <div class="thumbnail-item"
+                     onclick="changeMediaModeliser('Photo/Critères_jugement.jpg','Résultats des critères de jugement')">
+                    <img src="Photo/Critères_jugement.jpg" class="thumbnail-img">
+                    <div class="thumbnail-caption">Critères de jugement</div>
+                </div>
+
+                <div class="thumbnail-item"
+                     onclick="changeMediaModeliser('Photo/Modèle_cox.jpg','Courbe de survie')">
+                    <img src="Photo/Modèle_cox.jpg" class="thumbnail-img">
+                    <div class="thumbnail-caption">Courbe de survie</div>
+                </div>
+
+                <div class="thumbnail-item"
+                     onclick="changeMediaModeliser('Photo/POP.jpg','Description population POP')">
+                    <img src="Photo/POP.jpg" class="thumbnail-img">
+                    <div class="thumbnail-caption">Description de la population POP</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Lien poster -->
+        <div class="mt-3">
+            <a href="Photo/POSTER_EMOIS_VF.pdf" target="_blank">
+                Voir le poster (PDF)
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function changeMediaModeliser(imgSrc, caption) {
+    const img = document.getElementById('mainImageModeliser2');
+    const cap = document.getElementById('mainImageModeliser2');
+
+    if (!img || !cap) return;
+
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+        img.src = imgSrc;
+        cap.textContent = caption;
+        img.style.opacity = 1;
+    }, 150);
+}
+</script>
+
+
+        <!-- Compétences -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title text-primary">
+                    <i class="fas fa-tools me-2"></i>Compétences mobilisées
+                </h3>
+                <ul>
+                    <li>Nettoyage et structuration de bases PMSI</li>
+                    <li>Analyse de cohorte appariée</li>
+                    <li>Score de propension</li>
+                    <li>Analyse de survie</li>
+                    <li>Interprétation statistique avancée</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+// Fonctions pour les galeries d'images
+function changeMedia(element, caption) {
+    const container = element.closest('.image-gallery');
+    const mainImage = container.querySelector('img[id^="mainImage"]');
+    const mainCaption = container.querySelector('figcaption[id^="mainCaption"]');
+    
+    mainImage.style.opacity = 0;
+    setTimeout(() => {
+        mainImage.src = element.querySelector('img').src;
+        mainImage.alt = caption;
+        mainCaption.textContent = caption;
+        mainImage.style.opacity = 1;
+    }, 200);
+}
+
+function changeMediaTime(element, caption) {
+    const mainImage = document.getElementById('mainImageTime');
+    const mainCaption = document.getElementById('mainCaptionTime');
+    
+    mainImage.style.opacity = 0;
+    setTimeout(() => {
+        mainImage.src = element.querySelector('img').src;
+        mainImage.alt = caption;
+        mainCaption.textContent = caption;
+        mainImage.style.opacity = 1;
+    }, 200);
+}
+
+ // Fonctions pour les galeries d'images
+function changeMedia(element, caption) {
+    const container = element.closest('.image-gallery');
+    const mainImage = container.querySelector('img[id^="mainImage"]');
+    const mainCaption = container.querySelector('figcaption[id^="mainCaption"]');
+    
+    mainImage.style.opacity = 0;
+    setTimeout(() => {
+        mainImage.src = element.querySelector('img').src;
+        mainImage.alt = caption;
+        mainCaption.textContent = caption;
+        mainImage.style.opacity = 1;
+    }, 200);
+}
+
+function changeMediaTime(element, caption) {
+    const mainImage = document.getElementById('mainImageTime');
+    const mainCaption = document.getElementById('mainCaptionTime');
+    
+    mainImage.style.opacity = 0;
+    setTimeout(() => {
+        mainImage.src = element.querySelector('img').src;
+        mainImage.alt = caption;
+        mainCaption.textContent = caption;
+        mainImage.style.opacity = 1;
+    }, 200);
+}
+
+// Fonction pour les sous-menus
+function toggleSubmenu(event, submenuId) {
+    event.preventDefault();
+    event.stopPropagation();
+    const submenu = document.getElementById(submenuId);
+    const chevron = event.currentTarget.querySelector('i');
+    
+    if (submenu.style.display === 'none' || submenu.style.display === '') {
+        submenu.style.display = 'block';
+        chevron.classList.replace('fa-chevron-down', 'fa-chevron-up');
+    } else {
+        submenu.style.display = 'none';
+        chevron.classList.replace('fa-chevron-up', 'fa-chevron-down');
+    }
+}
+
+// Nouvelle version améliorée de showCompetence
+function showCompetence(competenceId) {
+    // Masquer tous les onglets
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.style.display = 'none';
+    });
+
+    // Afficher l'onglet sélectionné
+    const selectedTab = document.getElementById(competenceId);
+    if (selectedTab) {
+        selectedTab.style.display = 'block';
+        // Scroll vers le haut immédiatement
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    // Mise à jour des liens actifs
+    document.querySelectorAll('.sidebar a').forEach(link => {
+        link.classList.remove('active-tab');
+    });
+    
+    const activeLink = document.querySelector(`.sidebar a[onclick*="${competenceId}"]`);
+    if (activeLink) {
+        activeLink.classList.add('active-tab');
+        
+        // Ouvrir le sous-menu parent si nécessaire
+        const parentLi = activeLink.closest('li');
+        if (parentLi) {
+            const submenu = parentLi.querySelector('ul');
+            const chevron = parentLi.querySelector('i');
+            if (submenu && chevron) {
+                submenu.style.display = 'block';
+                chevron.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            }
+        }
+    }
+}
+
+// Initialisation optimisée
+document.addEventListener("DOMContentLoaded", function() {
+    // Ajout du CSS nécessaire
+    const style = document.createElement('style');
+    style.textContent = `
+        .main-content {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .tab-pane {
+            display: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .active-tab {
+            background-color: rgba(255,255,255,0.1);
+            border-left: 3px solid white;
+        }
+        body {
+            overflow-x: hidden;
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Activer le premier onglet par défaut
+    const firstTab = document.querySelector('.tab-pane');
+    if (firstTab) {
+        firstTab.style.display = 'block';
+        document.querySelector('.sidebar > ul > li:first-child > a').classList.add('active-tab');
+    }
+
+    // Gestion du hash dans l'URL
+    if (window.location.hash) {
+        const hash = window.location.hash;
+        let competenceId = 'traiter';
+        
+        if (hash.includes('sae206') ||hash.includes('sae-supermarche')) competenceId = 'analyser';
+        else if (hash.includes('sae402')) competenceId = 'valoriser';
+        else if (hash.includes('sae401')) competenceId = 'modeliser';
+
+        showCompetence(competenceId);
+
+        // Scroll vers l'élément après un court délai
+        setTimeout(() => {
+            const element = document.querySelector(hash);
+            if (element) {
+                const yOffset = -20; // Ajustement éventuel
+                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        }, 50);
+    }
+});
+
+
+    </script>
+	</script>
+	
+
+</body>
+</html>
