@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Erin Carado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7f6;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #2c3e50, #16a085);
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h3 {
+      color: #2c3e50;
+      margin-top: 0;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cv-button {
+      background-color: #ffffff;
+      color: #2c3e50;
+      font-weight: bold;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .cv-button:hover {
+      background-color: #16a085;
+      color: white;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border: 2px solid white;
+      border-radius: 50%;
+    }
+
+    .title-nav {
+      text-align: center;
+    }
+
+    /* Styles spécifiques pour la page contact */
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .contact-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+    }
+
+    .contact-info {
+      margin-bottom: 30px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #16a085;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .contact-form textarea {
+      height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #16a085;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      color: #2c3e50;
+      font-size: 24px;
+      transition: color 0.3s;
+    }
+
+    .social-link:hover {
+      color: #16a085;
+    }
+
+    @media (max-width: 768px) {
+      .contact-container {
+        flex-direction: column;
+      }
+      
+      .contact-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <a href="C:\Users\ERIN\Documents\BUT2 SD\Site Web\Portfolio\Photo\CV_ERIN_CARADO.pdf" download class="cv-button">Télécharger mon CV</a>
+    <div class="title-nav">
+      <h1>Erin Carado</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="competences.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <img src="C:\Users\ERIN\Documents\BUT2 SD\Site Web\Portfolio\Photo\PHOTO.jpg" alt="Photo de Erin" class="profile-pic">
+  </div>
+</header>
+
+<section id="contact">
+  <h2>Contactez-moi</h2>
+  
+  <div class="contact-container">
+    <div class="contact-card">
+      <h3>Informations de contact</h3>
+      
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <div>
+            <strong>Nom</strong><br>
+            Erin Carado
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <strong>Email</strong><br>
+            caradoerin5@gmail.com
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div>
+            <strong>Téléphone</strong><br>
+            +33 07 72 23 80 03
+          </div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div>
+            <strong>Localisation</strong><br>
+            Saint-Brieuc/Vannes, France
+          </div>
+        </div>
+      </div>
+      
+      <h3>Réseaux sociaux</h3>
+      <div class="social-links">
+<a href="https://www.linkedin.com/in/erin-carado-7025272b5/" target="_blank" class="social-link">
+  <i class="fab fa-linkedin-in"></i>
+</a>
+
+      </div>
+    </div>
+    
+    <div class="contact-card">
+      <h3>Envoyez-moi un message</h3>
+      
+      <form class="contact-form">
+        <input type="text" placeholder="Votre nom" required>
+        <input type="email" placeholder="Votre email" required>
+        <input type="text" placeholder="Sujet">
+        <textarea placeholder="Votre message" required></textarea>
+        <button type="submit" class="submit-btn">Envoyer le message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
