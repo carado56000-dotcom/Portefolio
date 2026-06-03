@@ -411,37 +411,26 @@
         padding: 20px;
       }
     }
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 12px;
-  padding: 0;
-  margin: 10px 0 0 0;
-}
-
 nav ul li a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff; /* Indispensable sur ce fond */
   font-weight: 500;
 
-  padding: 6px 14px;
+  padding: 8px 18px;
   border-radius: 20px;
 
-  border: 1px solid transparent;
+  /* Bordure blanche visible dès le départ */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background-color: transparent;
   transition: all 0.2s ease;
 
   cursor: pointer;
 }
 
-/* Hover visible mais discret */
+/* Hover : le bouton se remplit */
 nav ul li a:hover {
-  border: 1px solid #ccc;
-  background-color: #f7f7f7;
-}
-
-/* Effet clic */
-nav ul li a:active {
-  transform: scale(0.96);
+  background-color: #ffffff;
+  color: #1a5c52; /* Une couleur sombre (proche de ton fond) pour le texte au survol */
 }
   </style>
 </head>
