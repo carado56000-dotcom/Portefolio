@@ -411,8 +411,49 @@
         padding: 20px;
       }
     }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
 nav ul li a {
-  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+/* effet discret au survol */
+nav ul li a:hover {
+  color: #000;
+}
+
+/* petit trait animé en dessous */
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: #333;
+  transition: width 0.2s ease;
+  border-radius: 2px;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* feedback clic */
+nav ul li a:active {
+  transform: scale(0.97);
 }
   </style>
 </head>
