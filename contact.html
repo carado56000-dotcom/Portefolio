@@ -192,6 +192,29 @@
         width: 100%;
       }
     }
+
+
+    nav ul li a {
+  text-decoration: none;
+  color: #ffffff; /* Indispensable sur ce fond */
+  font-weight: 500;
+
+  padding: 8px 18px;
+  border-radius: 20px;
+
+  /* Bordure blanche visible dès le départ */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background-color: transparent;
+  transition: all 0.2s ease;
+
+  cursor: pointer;
+}
+
+/* Hover : le bouton se remplit */
+nav ul li a:hover {
+  background-color: #ffffff;
+  color: #1a5c52; /* Une couleur sombre (proche de ton fond) pour le texte au survol */
+}
   </style>
 </head>
 <body>
